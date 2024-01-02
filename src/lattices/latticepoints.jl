@@ -56,4 +56,8 @@ Base.:-(i::Int, j::LatticePoint{1}) = LatticePoint(i, j.lattice) - j
 
 Base.isless(i::L, j::L) where {L<:LatticePoint} = linearize_index(i) < linearize_index(j)
 
+Base.isless(i::L, j::Int) where {L<:LatticePoint} = linearize_index(i) < j
+
+Base.isless(i::Int, j::L) where {L<:LatticePoint} = i < linearize_index(j)
+
 latticetype(::Union{LatticePoint{N,G},Type{<:LatticePoint{N,G}}}) where {N,G} = G
